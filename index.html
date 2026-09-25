@@ -6,77 +6,299 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>PC構成＆周辺機器 | Gaming Setup</title>
 <style>
-  * { box-sizing: border-box; }
-  body { margin: 0; min-height: 100vh; font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif; line-height: 1.6; color: #e0e0e0; background: linear-gradient(135deg, #0a0a0a, #1a0000); }
-  .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
-  header { text-align: center; margin-bottom: 60px; }
-  h1 { margin: 0 0 10px; font-size: 2.5rem; color: #ff4444; }
-  .subtitle { margin: 0; color: #888; font-size: .9rem; letter-spacing: 2px; }
-  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
-  .card { min-width: 0; padding: 25px; background: rgba(30,30,30,.8); border: 1px solid rgba(204,0,0,.2); border-radius: 12px; transition: transform .3s, border-color .3s, box-shadow .3s; }
-  .card:hover { transform: translateY(-5px); border-color: rgba(204,0,0,.6); box-shadow: 0 10px 30px rgba(204,0,0,.3); }
-  .card h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(204,0,0,.3); color: #ff4444; font-size: 1.3rem; }
-  .card h2::before { content: ""; width: 4px; height: 20px; border-radius: 2px; background: linear-gradient(#f00,#c00); }
-  .spec-list { margin: 0; padding: 0; list-style: none; }
-  .spec-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.05); overflow-x: auto; scrollbar-width: thin; }
-  .spec-item:last-child { border-bottom: 0; }
-  .spec-label { flex: 0 0 84px; color: #ff6666; font-size: .85rem; font-weight: 600; white-space: nowrap; }
-  .spec-value { flex: 0 0 auto; margin-left: auto; text-align: right; white-space: nowrap; font-size: .88rem; }
-  .spec-value a { color: #e0e0e0; text-decoration: none; }
-  .spec-value a:hover, .spec-value a:focus-visible { color: #ff7777; text-decoration: underline; text-underline-offset: 3px; }
-  .spec-value a:focus-visible { outline: 2px solid #ff7777; outline-offset: 3px; }
-  .media-section { margin: 60px 0 40px; }
-  .media-section h2 { color: #ff4444; font-size: 1.8rem; text-align: center; }
-  .media-gallery { display: grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap: 15px; margin-top: 30px; }
-  .media-item { position: relative; overflow: hidden; aspect-ratio: 1; border: 1px solid rgba(204,0,0,.2); border-radius: 8px; background: #1a1a1a; }
-  .media-item img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-  .media-item:hover img { transform: scale(1.1); }
-  .media-caption { position: absolute; bottom: 0; width: 100%; padding: 10px; color: #fff; text-align: center; font-size: .8rem; background: rgba(0,0,0,.7); }
-  footer { margin-top: 80px; padding: 30px 0; border-top: 1px solid rgba(204,0,0,.2); color: #777; font-size: .85rem; text-align: center; }
-  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
-  @media (max-width: 480px) { h1 { font-size: 1.8rem; } .container { padding: 30px 14px; } .card { padding: 18px 14px; } .spec-label { flex-basis: 72px; } .spec-value { font-size: .83rem; } .media-gallery { grid-template-columns: repeat(2,minmax(0,1fr)); } }
-  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; } }
+/* --- 基本設定 --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+  line-height: 1.6;
+  color: #e0e0e0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 100%);
+  min-height: 100vh;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+/* --- ヘッダー --- */
+header { text-align: center; margin-bottom: 60px; animation: fadeInDown 0.8s ease; }
+h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #ff0000, #cc0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  text-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+}
+.subtitle { color: #888; font-size: 0.9rem; letter-spacing: 2px; }
+/* --- スペックグリッド --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+.card {
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(204, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+.grid .card:nth-child(1) { animation-delay: 0.1s; }
+.grid .card:nth-child(2) { animation-delay: 0.2s; }
+.grid .card:nth-child(3) { animation-delay: 0.3s; }
+.grid .card:nth-child(4) { animation-delay: 0.4s; }
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(204, 0, 0, 0.6);
+  box-shadow: 0 10px 30px rgba(204, 0, 0, 0.3);
+}
+.card h2 {
+  color: #ff4444;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(204, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card h2::before {
+  content: "";
+  width: 4px;
+  height: 20px;
+  background: linear-gradient(180deg, #ff0000, #cc0000);
+  border-radius: 2px;
+}
+.spec-list { list-style: none; }
+.spec-item {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+.spec-item:hover { background: rgba(204, 0, 0, 0.05); padding-left: 10px; }
+.spec-item:last-child { border-bottom: none; }
+.spec-label { color: #ff6666; font-weight: 600; min-width: 120px; font-size: 0.85rem; }
+.spec-value { color: #e0e0e0; text-align: right; flex: 1; }
+/* --- 変更履歴・変更予定・連絡先 --- */
+.info-section {
+  margin-top: 40px;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+.section-title {
+  color: #ff4444;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.info-card { animation-delay: 0.1s; }
+.history-list { list-style: none; }
+.history-item {
+  display: grid;
+  grid-template-columns: 155px 110px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.history-item:last-child { border-bottom: none; }
+.history-date, .history-category { color: #ff6666; }
+.history-detail { overflow-wrap: anywhere; }
+.planned-item { grid-template-columns: 110px minmax(0, 1fr); }
+.contact-text { margin-bottom: 8px; }
+.info-card a { color: #ff8888; text-underline-offset: 3px; }
+.info-card a:hover { color: #ffb3b3; }
+/* --- メディアセクション --- */
+.media-section {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+.media-section h2 {
+  color: #ff4444;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+.media-section h2::before, .media-section h2::after {
+  content: "";
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #cc0000);
+}
+.media-section h2::after { background: linear-gradient(90deg, #cc0000, transparent); }
+.media-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+.media-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: 1px solid rgba(204, 0, 0, 0.2);
+  background: #1a1a1a;
+}
+.media-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.media-item:hover img { transform: scale(1.1); }
+.media-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.8rem;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.media-item:hover .media-caption { transform: translateY(0); }
+/* --- フッター --- */
+footer {
+  text-align: center;
+  margin-top: 80px;
+  padding: 30px 0;
+  border-top: 1px solid rgba(204, 0, 0, 0.2);
+  color: #666;
+  font-size: 0.85rem;
+}
+/* --- アニメーション --- */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* --- レスポンシブ --- */
+@media (max-width: 768px) {
+  h1 { font-size: 1.8rem; }
+  .grid { grid-template-columns: 1fr; }
+  .spec-item { flex-direction: column; align-items: flex-start; gap: 5px; }
+  .spec-label { min-width: auto; }
+  .spec-value { text-align: left; }
+  .history-item, .planned-item { grid-template-columns: 1fr; gap: 2px; }
+  .media-gallery { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
 </style>
 </head>
 <body>
 <div class="container">
-<header><h1>PC構成 ＆ 周辺機器</h1><p class="subtitle">GAMING SETUP 2026</p></header>
-<main class="grid">
-<section class="card"><h2>Core Specs</h2><ul class="spec-list">
-<li class="spec-item"><span class="spec-label">OS</span><span class="spec-value"><a href="https://www.microsoft.com/ja-jp/d/windows-11-home/dg7gmgf0krt0" target="_blank" rel="noopener noreferrer">Windows 11 Home</a></span></li>
-<li class="spec-item"><span class="spec-label">CPU</span><span class="spec-value"><a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer">AMD Ryzen 7 9800X3D</a></span></li>
-<li class="spec-item"><span class="spec-label">Cooler</span><span class="spec-value"><a href="https://jp.deepcool.com/products/Cooling/cpuliquidcoolers/SPARTACUS-360-Fully-Customizable-6th-Gen-Liquid-Cooler-with-Silent-Ring-Fans/2025/22357.shtml" target="_blank" rel="noopener noreferrer">DeepCool SPARTACUS 360</a></span></li>
-<li class="spec-item"><span class="spec-label">M/B</span><span class="spec-value"><a href="https://jp.msi.com/Motherboard/X670E-GAMING-PLUS-WIFI" target="_blank" rel="noopener noreferrer">MSI X670E GAMING PLUS WIFI</a></span></li>
-<li class="spec-item"><span class="spec-label">RAM</span><span class="spec-value"><a href="https://www.crucial.com/memory/ddr5/cp2k32g60c40u5b" target="_blank" rel="noopener noreferrer">Crucial Pro DDR5-6000 64GB</a></span></li>
-<li class="spec-item"><span class="spec-label">GPU</span><span class="spec-value"><a href="https://www.asus.com/motherboards-components/graphics-cards/tuf-gaming/tuf-rtx4070ti-12g-gaming/" target="_blank" rel="noopener noreferrer">ASUS TUF Gaming GeForce RTX 4070 Ti</a></span></li>
-<li class="spec-item"><span class="spec-label">LAN</span><span class="spec-value"><a href="https://www.tp-link.com/jp/home-networking/pci-adapter/tx401/" target="_blank" rel="noopener noreferrer">TP-Link TX401</a></span></li>
-<li class="spec-item"><span class="spec-label">PSU</span><span class="spec-value"><a href="https://www.google.com/search?q=Thermaltake+1050W+power+supply" target="_blank" rel="noopener noreferrer">Thermaltake 1050W</a></span></li>
-<li class="spec-item"><span class="spec-label">Case</span><span class="spec-value"><a href="https://www.amazon.co.jp/dp/B0DQPQ5KN7?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1" target="_blank" rel="noopener noreferrer">NZXT H9 Flow RGB+ (2025)</a></span></li>
-</ul></section>
-<section class="card"><h2>Storage</h2><ul class="spec-list">
-<li class="spec-item"><span class="spec-label">M.2 SSD 1</span><span class="spec-value"><a href="https://www.samsung.com/uk/memory-storage/nvme-ssd/980-pro-2tb-nvme-pcie-gen-4-mz-v8p2t0bw/" target="_blank" rel="noopener noreferrer">Samsung 980 PRO 2TB</a></span></li>
-<li class="spec-item"><span class="spec-label">M.2 SSD 2</span><span class="spec-value"><a href="https://shop.sandisk.com/en-se/products/ssd/internal-ssd/wd-black-sn850x-nvme-ssd" target="_blank" rel="noopener noreferrer">WD_BLACK SN850X 1TB</a></span></li>
-<li class="spec-item"><span class="spec-label">M.2 SSD 3</span><span class="spec-value"><a href="https://www.corsair.com/us/en/p/data-storage/cssd-f1000gbmp600/force-series-gen-4-pcie-mp600-1tb-nvme-m-2-ssd-cssd-f1000gbmp600" target="_blank" rel="noopener noreferrer">CORSAIR Force Series MP600 1TB</a></span></li>
-<li class="spec-item"><span class="spec-label">HDD 1</span><span class="spec-value"><a href="https://www.seagate.com/jp/ja/support/internal-hard-drives/desktop-hard-drives/barracuda-3-5/" target="_blank" rel="noopener noreferrer">Seagate 4TB</a></span></li>
-<li class="spec-item"><span class="spec-label">HDD 2</span><span class="spec-value"><a href="https://www.toshiba-storage.com/" target="_blank" rel="noopener noreferrer">TOSHIBA 2TB</a></span></li>
-</ul></section>
-<section class="card"><h2>Peripherals</h2><ul class="spec-list">
-<li class="spec-item"><span class="spec-label">Main KB</span><span class="spec-value"><a href="https://wooting.io/wooting-80he-tenz" target="_blank" rel="noopener noreferrer">Wooting 80HE TenZ Takeover</a></span></li>
-<li class="spec-item"><span class="spec-label">Cable</span><span class="spec-value"><a href="https://attackshark.jp/products/attackshark-c01pro-coiled-keyboard-cable-usb-c-braided-mechanical-keyboard" target="_blank" rel="noopener noreferrer">ATTACK SHARK C01PRO コイルケーブル（Red）</a></span></li>
-<li class="spec-item"><span class="spec-label">Mouse</span><span class="spec-value"><a href="https://gaming.logicool.co.jp/ja-jp/shop/p/pro-x2-superstrike-mouse" target="_blank" rel="noopener noreferrer">ロジクール G PRO X2 SUPERSTRIKE</a></span></li>
-<li class="spec-item"><span class="spec-label">Mouse Pad</span><span class="spec-value"><a href="https://www.eluminarc.com/products/%E4%BA%88%E7%B4%84%E8%B2%A9%E5%A3%B2-%E7%A5%9E%E6%A8%B9" target="_blank" rel="noopener noreferrer">eLuminArc 神樹 (Shinju)</a></span></li>
-<li class="spec-item"><span class="spec-label">Hub</span><span class="spec-value"><a href="https://kibushop.com/products/hm-lab-zneo-hub" target="_blank" rel="noopener noreferrer">HM Lab ZNEO</a></span></li>
-<li class="spec-item"><span class="spec-label">Deck</span><span class="spec-value"><a href="https://www.elgato.com/jp/ja/p/stream-deck-plus" target="_blank" rel="noopener noreferrer">Elgato Stream Deck +</a></span></li>
-</ul></section>
-<section class="card"><h2>Audio &amp; Display</h2><ul class="spec-list">
-<li class="spec-item"><span class="spec-label">Monitor</span><span class="spec-value"><a href="https://www.lg.com/jp/monitors/gaming-monitors/27gx700a-b/" target="_blank" rel="noopener noreferrer">LG UltraGear OLED 27GX700A-B</a></span></li>
-<li class="spec-item"><span class="spec-label">Arm</span><span class="spec-value"><a href="https://www.ergotron.com/en-us/products/product-details/45-241" target="_blank" rel="noopener noreferrer">Ergotron LX デスクモニターアーム（マットブラック）</a></span></li>
-<li class="spec-item"><span class="spec-label">Speaker</span><span class="spec-value"><a href="https://support.bose.co.jp/product/companion-2-series-iii-multimedia-speaker-system/01t8c00000OydCbAAJ" target="_blank" rel="noopener noreferrer">Bose Companion 2 Series III</a></span></li>
-<li class="spec-item"><span class="spec-label">Mic</span><span class="spec-value"><a href="https://www.logitechg.com/en-us/shop/p/yeti-premium-usb-microphone" target="_blank" rel="noopener noreferrer">Blue Yeti USBマイク</a></span></li>
-<li class="spec-item"><span class="spec-label">Earbuds</span><span class="spec-value"><a href="https://www.sony.jp/support/inzone/products/inzone_buds/" target="_blank" rel="noopener noreferrer">Sony INZONE Buds (WF-G700N)</a></span></li>
-</ul></section>
+<header>
+<h1>PC構成 ＆ 周辺機器</h1>
+<p class="subtitle">GAMING SETUP 2026</p>
+</header>
+<main>
+<div class="grid">
+<div class="card">
+<h2>Core Specs</h2>
+<ul class="spec-list">
+<li class="spec-item"><span class="spec-label">OS</span><span class="spec-value">Windows 11 Home</span></li>
+<li class="spec-item"><span class="spec-label">CPU</span><span class="spec-value">AMD Ryzen 7 9800X3D</span></li>
+<li class="spec-item"><span class="spec-label">Cooler</span><span class="spec-value">DeepCool SPARTACUS 360</span></li>
+<li class="spec-item"><span class="spec-label">M/B</span><span class="spec-value">MSI X670E GAMING PLUS WIFI</span></li>
+<li class="spec-item"><span class="spec-label">RAM</span><span class="spec-value">Crucial Pro DDR5-6000 64GB</span></li>
+<li class="spec-item"><span class="spec-label">GPU</span><span class="spec-value">ASUS TUF RTX 4070 Ti</span></li>
+<li class="spec-item"><span class="spec-label">LAN</span><span class="spec-value">TP-Link TX401 10Gbps</span></li>
+<li class="spec-item"><span class="spec-label">PSU</span><span class="spec-value">Thermaltake 1050W</span></li>
+<li class="spec-item"><span class="spec-label">Case</span><span class="spec-value">NZXT H9 Flow RGB+ (2025)</span></li>
+</ul>
+</div>
+<div class="card">
+<h2>Storage</h2>
+<ul class="spec-list">
+<li class="spec-item"><span class="spec-label">M.2 SSD 1</span><span class="spec-value">Samsung 980 PRO 2TB</span></li>
+<li class="spec-item"><span class="spec-label">M.2 SSD 2</span><span class="spec-value">WD_BLACK SN850X 1TB</span></li>
+<li class="spec-item"><span class="spec-label">M.2 SSD 3</span><span class="spec-value">CORSAIR MP600 1TB</span></li>
+<li class="spec-item"><span class="spec-label">HDD 1</span><span class="spec-value">Seagate 4TB</span></li>
+<li class="spec-item"><span class="spec-label">HDD 2</span><span class="spec-value">TOSHIBA 2TB</span></li>
+</ul>
+</div>
+<div class="card">
+<h2>Peripherals</h2>
+<ul class="spec-list">
+<li class="spec-item"><span class="spec-label">Main KB</span><span class="spec-value">Wooting 80HE TenZ</span></li>
+<li class="spec-item"><span class="spec-label">Sub KB</span><span class="spec-value">REALFORCE GX1</span></li>
+<li class="spec-item"><span class="spec-label">Cable</span><span class="spec-value">ATTACK SHARK C01Pro Red</span></li>
+<li class="spec-item"><span class="spec-label">Mouse</span><span class="spec-value">ロジクール G SUPERSTRIKE</span></li>
+<li class="spec-item"><span class="spec-label">Mouse Pad</span><span class="spec-value">Wraith Cosmic Glass V2</span></li>
+<li class="spec-item"><span class="spec-label">Hub</span><span class="spec-value">HM Lab ZNEO</span></li>
+<li class="spec-item"><span class="spec-label">Deck</span><span class="spec-value">Elgato Stream Deck +</span></li>
+</ul>
+</div>
+<div class="card">
+<h2>Audio &amp; Display</h2>
+<ul class="spec-list">
+<li class="spec-item"><span class="spec-label">Monitor</span><span class="spec-value">LG UltraGear OLED 27GX700A-B</span></li>
+<li class="spec-item"><span class="spec-label">Arm</span><span class="spec-value">Ergotron LX Matte Black</span></li>
+<li class="spec-item"><span class="spec-label">Speaker</span><span class="spec-value">Bose Companion 2 Series III</span></li>
+<li class="spec-item"><span class="spec-label">Mic</span><span class="spec-value">Blue Yeti</span></li>
+<li class="spec-item"><span class="spec-label">Earbuds</span><span class="spec-value">Sony INZONE Buds (WF-G700N)</span></li>
+</ul>
+</div>
+</div>
+<section class="info-section" aria-labelledby="history-heading">
+<h2 class="section-title" id="history-heading">変更履歴</h2>
+<div class="card info-card">
+<ul class="history-list">
+<li class="history-item"><time class="history-date" datetime="2026-09-03">2026/9/3(木)</time><span class="history-category">イヤホン</span><span class="history-detail">EarFun Air Pro 4 → Sony INZONE Buds (WF-G700N)</span></li>
+<li class="history-item"><time class="history-date" datetime="2026-08-26">2026/8/26(水)</time><span class="history-category">CPUクーラー</span><span class="history-detail">NZXT KRAKEN X73 360mm → DeepCool SPARTACUS 360</span></li>
+<li class="history-item"><time class="history-date" datetime="2026-08-22">2026/8/22(土)</time><span class="history-category">PCケース</span><span class="history-detail">NZXT H710i Black &amp; RED → NZXT H9 Flow RGB+ (2025)</span></li>
+<li class="history-item"><time class="history-date" datetime="2026-05-14">2026/5/14(木)</time><span class="history-category">モニター</span><span class="history-detail">MSI Optix G273QPF 165Hz → LG UltraGear OLED 27GX700A-B</span></li>
+<li class="history-item"><time class="history-date" datetime="2026-03-27">2026/3/27(金)</time><span class="history-category">マウス</span><span class="history-detail">VAXEE NP-01S v2R Wireless → ロジクール G SUPERSTRIKE</span></li>
+</ul>
+</div>
+</section>
+<section class="info-section" aria-labelledby="planned-heading">
+<h2 class="section-title" id="planned-heading">変更予定</h2>
+<div class="card info-card">
+<ul class="history-list">
+<li class="history-item planned-item"><span class="history-category">マウスパッド</span><span class="history-detail">Wraith Cosmic Glass V2 → eLuminArc 神樹 (Shinju)</span></li>
+</ul>
+</div>
+</section>
+<section class="media-section" aria-labelledby="gallery-heading">
+<h2 id="gallery-heading">Gallery</h2>
+<div class="media-gallery">
+<div class="media-item">
+<a href="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" target="_blank" rel="noopener noreferrer">
+<img src="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" alt="Main Desk Setup" />
+<div class="media-caption">Main Desk Setup</div>
+</a>
+</div>
+</div>
+</section>
+<section class="info-section" aria-labelledby="contact-heading">
+<h2 class="section-title" id="contact-heading">Contact</h2>
+<div class="card info-card">
+<p class="contact-text">Discord: gakukiti</p>
+<p>フレンドを追加 → ユーザー名で追加 → gakukiti</p>
+</div>
+</section>
 </main>
-<section class="media-section"><h2>Gallery</h2><div class="media-gallery"><div class="media-item"><a href="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" alt="Main Desk Setup" /><span class="media-caption">Main Desk Setup</span></a></div></div></section>
 <footer>© 2026 Gaming Setup Database</footer>
 </div>
 </body>
