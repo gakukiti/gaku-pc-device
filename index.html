@@ -4,7 +4,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PC構成＆周辺機器 | Gaming Setup</title>
+<title>gakukiti | Gaming Setup</title>
+<meta name="description" content="gakukitiのPC・周辺機器の紹介。デスク写真や機材の変更履歴をまとめています。" />
 <style>
 /* --- 基本設定 --- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -203,80 +204,164 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* --- ページ内ナビゲーション --- */
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body { overflow-wrap: anywhere; }
+header { margin-bottom: 28px; }
+h1 { background: none; -webkit-text-fill-color: #ff6666; color: #ff6666; }
+.subtitle { color: #aaa; }
+.page-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 24px 0 40px; }
+.page-nav a { color: #eee; border: 1px solid #653030; border-radius: 999px; padding: 9px 16px; text-decoration: none; background: #211616; font-size: .9rem; }
+.page-nav a:hover { background: #482020; border-color: #ff6666; }
+a:focus-visible { outline: 3px solid #ff9999; outline-offset: 5px; }
+.featured { margin-bottom: 56px; }
+.section-intro { color: #bbb; text-align: center; margin: -8px 0 24px; }
+.featured-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.featured-card h3 { font-size: 1.15rem; color: #fff; margin-bottom: 12px; }
+.featured-card p:last-child { color: #bbb; font-size: .9rem; }
+.edit-note { color: #ffaaaa; font-size: .8rem; margin-bottom: 8px; }
+.setup-heading { margin-bottom: 24px; }
+.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.spec-value { min-width: 0; }
+.media-caption { transform: none; }
+.media-item:focus-within img { transform: scale(1.05); }
+footer { color: #aaa; }
+@media (max-width: 768px) {
+  .container { padding: 28px 16px; }
+
+  .featured-grid, .grid { grid-template-columns: 1fr; }
+  .page-nav a { padding: 9px 12px; }
+  .media-gallery { grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* 最新5件以外の履歴を開閉 */
+.history-more { margin-top: 16px; }
+.history-more summary { cursor: pointer; list-style: none; width: fit-content; max-width: 100%; margin: 0 auto; padding: 10px 20px; border: 1px solid #884444; border-radius: 999px; color: #ffaaaa; background: #291717; font-weight: 600; text-align: center; }
+.history-more summary::-webkit-details-marker { display: none; }
+.history-more summary:hover { background: #482020; }
+.history-more summary:focus-visible { outline: 3px solid #ff9999; outline-offset: 4px; }
+.history-more .when-open { display: none; }
+.history-more[open] .when-open { display: inline; }
+.history-more[open] .when-closed { display: none; }
+.history-more[open] .history-list { margin-top: 16px; border-top: 1px solid #482020; }
+
+.device-link, .info-card .device-link { color: #ffaaaa; text-decoration: underline; text-decoration-color: #804444; text-underline-offset: 4px; }
+.device-link:hover, .info-card .device-link:hover { color: #ffaaaa; text-decoration-color: currentColor; }
+.external-icon { color: #ff9999; font-size: .8em; white-space: nowrap; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+.photo-dialog { width: min(1100px, 94vw); max-width: 94vw; max-height: 94dvh; margin: auto; padding: 56px 12px 12px; border: 1px solid #884444; border-radius: 12px; background: #151111; color: #fff; }
+.photo-dialog::backdrop { background: rgba(0, 0, 0, .88); }
+.photo-dialog img { display: block; width: 100%; max-height: calc(94dvh - 110px); object-fit: contain; }
+.photo-dialog figcaption { text-align: center; padding-top: 8px; color: #ccc; font-size: .85rem; }
+.photo-close { position: absolute; top: 10px; right: 12px; min-height: 36px; padding: 6px 16px; border: 1px solid #884444; border-radius: 999px; background: #301919; color: #fff; cursor: pointer; font: inherit; }
+.photo-close:focus-visible { outline: 3px solid #ff9999; outline-offset: 3px; }
+body.photo-open { overflow: hidden; }
 </style>
 </head>
 <body>
 <div class="container">
 <header>
-<h1>PC構成 ＆ 周辺機器</h1>
+<h1>gakukiti</h1>
 <p class="subtitle">GAMING SETUP 2026</p>
 </header>
+<nav class="page-nav" aria-label="ページ内目次">
+<a href="#favorites">注目の機材</a><a href="#setup">PC・周辺機器</a><a href="#history-heading">変更履歴</a><a href="#planned-heading">変更予定</a><a href="#gallery-heading">写真</a><a href="#contact-heading">連絡先</a>
+</nav>
 <main>
+<section class="featured" id="favorites" aria-labelledby="favorites-heading">
+<p class="eyebrow" style="text-align:center">SETUP HIGHLIGHTS</p>
+<h2 class="section-title" id="favorites-heading">注目の機材</h2>
+<p class="section-intro">使用機材からピックアップした3つ。</p>
+<!-- 仮の3機種です。お気に入りの機材に差し替えてください。 -->
+<div class="featured-grid">
+<article class="card featured-card"><p class="eyebrow">01 / KEYBOARD</p><h3><a class="device-link" href="https://www.google.com/search?q=Wooting%2080HE%20TenZ" target="_blank" rel="noopener noreferrer" title="Wooting 80HE TenZ の製品情報を検索（新しいタブ）">Wooting 80HE TenZ<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></h3><p class="edit-note">メインキーボード</p></article>
+<article class="card featured-card"><p class="eyebrow">02 / MOUSE</p><h3><a class="device-link" href="https://www.google.com/search?q=%E3%83%AD%E3%82%B8%E3%82%AF%E3%83%BC%E3%83%AB%20G%20SUPERSTRIKE" target="_blank" rel="noopener noreferrer" title="ロジクール G SUPERSTRIKE の製品情報を検索（新しいタブ）">ロジクール G SUPERSTRIKE<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></h3><p class="edit-note">マウス</p></article>
+<article class="card featured-card"><p class="eyebrow">03 / MONITOR</p><h3><a class="device-link" href="https://www.google.com/search?q=LG%20UltraGear%20OLED%2027GX700A-B" target="_blank" rel="noopener noreferrer" title="LG UltraGear OLED 27GX700A-B の製品情報を検索（新しいタブ）">LG UltraGear OLED<br>27GX700A-B<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></h3><p class="edit-note">モニター</p></article>
+</div>
+</section>
+<section id="setup" aria-labelledby="setup-heading">
+<p class="eyebrow" style="text-align:center">MY EQUIPMENT</p>
+<h2 class="section-title setup-heading" id="setup-heading">PC構成 ＆ 周辺機器</h2>
+<p class="section-intro">機材名を押すと、製品情報の検索結果を新しいタブで開きます。</p>
 <div class="grid">
 <div class="card">
 <h2>Core Specs</h2>
 <ul class="spec-list">
-<li class="spec-item"><span class="spec-label">OS</span><span class="spec-value">Windows 11 Home</span></li>
-<li class="spec-item"><span class="spec-label">CPU</span><span class="spec-value">AMD Ryzen 7 9800X3D</span></li>
-<li class="spec-item"><span class="spec-label">Cooler</span><span class="spec-value">DeepCool SPARTACUS 360</span></li>
-<li class="spec-item"><span class="spec-label">M/B</span><span class="spec-value">MSI X670E GAMING PLUS WIFI</span></li>
-<li class="spec-item"><span class="spec-label">RAM</span><span class="spec-value">Crucial Pro DDR5-6000 64GB</span></li>
-<li class="spec-item"><span class="spec-label">GPU</span><span class="spec-value">ASUS TUF RTX 4070 Ti</span></li>
-<li class="spec-item"><span class="spec-label">LAN</span><span class="spec-value">TP-Link TX401 10Gbps</span></li>
-<li class="spec-item"><span class="spec-label">PSU</span><span class="spec-value">Thermaltake 1050W</span></li>
-<li class="spec-item"><span class="spec-label">Case</span><span class="spec-value">NZXT H9 Flow RGB+ (2025)</span></li>
+<li class="spec-item"><span class="spec-label">OS</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Windows%2011%20Home" target="_blank" rel="noopener noreferrer" title="Windows 11 Home の製品情報を検索（新しいタブ）">Windows 11 Home<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">CPU</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=AMD%20Ryzen%207%209800X3D" target="_blank" rel="noopener noreferrer" title="AMD Ryzen 7 9800X3D の製品情報を検索（新しいタブ）">AMD Ryzen 7 9800X3D<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Cooler</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=DeepCool%20SPARTACUS%20360" target="_blank" rel="noopener noreferrer" title="DeepCool SPARTACUS 360 の製品情報を検索（新しいタブ）">DeepCool SPARTACUS 360<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">M/B</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=MSI%20X670E%20GAMING%20PLUS%20WIFI" target="_blank" rel="noopener noreferrer" title="MSI X670E GAMING PLUS WIFI の製品情報を検索（新しいタブ）">MSI X670E GAMING PLUS WIFI<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">RAM</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Crucial%20Pro%20DDR5-6000%2064GB" target="_blank" rel="noopener noreferrer" title="Crucial Pro DDR5-6000 64GB の製品情報を検索（新しいタブ）">Crucial Pro DDR5-6000 64GB<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">GPU</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=ASUS%20TUF%20RTX%204070%20Ti" target="_blank" rel="noopener noreferrer" title="ASUS TUF RTX 4070 Ti の製品情報を検索（新しいタブ）">ASUS TUF RTX 4070 Ti<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">LAN</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=TP-Link%20TX401%2010Gbps" target="_blank" rel="noopener noreferrer" title="TP-Link TX401 10Gbps の製品情報を検索（新しいタブ）">TP-Link TX401 10Gbps<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">PSU</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Thermaltake%201050W" target="_blank" rel="noopener noreferrer" title="Thermaltake 1050W の製品情報を検索（新しいタブ）">Thermaltake 1050W<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Case</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=NZXT%20H9%20Flow%20RGB%2B%20(2025)" target="_blank" rel="noopener noreferrer" title="NZXT H9 Flow RGB+ (2025) の製品情報を検索（新しいタブ）">NZXT H9 Flow RGB+ (2025)<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
 </ul>
 </div>
 <div class="card">
 <h2>Storage</h2>
 <ul class="spec-list">
-<li class="spec-item"><span class="spec-label">M.2 SSD 1</span><span class="spec-value">Samsung 980 PRO 2TB</span></li>
-<li class="spec-item"><span class="spec-label">M.2 SSD 2</span><span class="spec-value">WD_BLACK SN850X 1TB</span></li>
-<li class="spec-item"><span class="spec-label">M.2 SSD 3</span><span class="spec-value">CORSAIR MP600 1TB</span></li>
-<li class="spec-item"><span class="spec-label">HDD 1</span><span class="spec-value">Seagate 4TB</span></li>
-<li class="spec-item"><span class="spec-label">HDD 2</span><span class="spec-value">TOSHIBA 2TB</span></li>
+<li class="spec-item"><span class="spec-label">M.2 SSD 1</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Samsung%20980%20PRO%202TB" target="_blank" rel="noopener noreferrer" title="Samsung 980 PRO 2TB の製品情報を検索（新しいタブ）">Samsung 980 PRO 2TB<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">M.2 SSD 2</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=WD_BLACK%20SN850X%201TB" target="_blank" rel="noopener noreferrer" title="WD_BLACK SN850X 1TB の製品情報を検索（新しいタブ）">WD_BLACK SN850X 1TB<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">M.2 SSD 3</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=CORSAIR%20MP600%201TB" target="_blank" rel="noopener noreferrer" title="CORSAIR MP600 1TB の製品情報を検索（新しいタブ）">CORSAIR MP600 1TB<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">HDD 1</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Seagate%204TB" target="_blank" rel="noopener noreferrer" title="Seagate 4TB の製品情報を検索（新しいタブ）">Seagate 4TB<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">HDD 2</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=TOSHIBA%202TB" target="_blank" rel="noopener noreferrer" title="TOSHIBA 2TB の製品情報を検索（新しいタブ）">TOSHIBA 2TB<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
 </ul>
 </div>
 <div class="card">
 <h2>Peripherals</h2>
 <ul class="spec-list">
-<li class="spec-item"><span class="spec-label">Main KB</span><span class="spec-value">Wooting 80HE TenZ</span></li>
-<li class="spec-item"><span class="spec-label">Sub KB</span><span class="spec-value">REALFORCE GX1</span></li>
-<li class="spec-item"><span class="spec-label">Cable</span><span class="spec-value">ATTACK SHARK C01Pro Red</span></li>
-<li class="spec-item"><span class="spec-label">Mouse</span><span class="spec-value">ロジクール G SUPERSTRIKE</span></li>
-<li class="spec-item"><span class="spec-label">Mouse Pad</span><span class="spec-value">Wraith Cosmic Glass V2</span></li>
-<li class="spec-item"><span class="spec-label">Hub</span><span class="spec-value">HM Lab ZNEO</span></li>
-<li class="spec-item"><span class="spec-label">Deck</span><span class="spec-value">Elgato Stream Deck +</span></li>
+<li class="spec-item"><span class="spec-label">Main KB</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Wooting%2080HE%20TenZ" target="_blank" rel="noopener noreferrer" title="Wooting 80HE TenZ の製品情報を検索（新しいタブ）">Wooting 80HE TenZ<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Sub KB</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=REALFORCE%20GX1" target="_blank" rel="noopener noreferrer" title="REALFORCE GX1 の製品情報を検索（新しいタブ）">REALFORCE GX1<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Cable</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=ATTACK%20SHARK%20C01Pro%20Red" target="_blank" rel="noopener noreferrer" title="ATTACK SHARK C01Pro Red の製品情報を検索（新しいタブ）">ATTACK SHARK C01Pro Red<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Mouse</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=%E3%83%AD%E3%82%B8%E3%82%AF%E3%83%BC%E3%83%AB%20G%20SUPERSTRIKE" target="_blank" rel="noopener noreferrer" title="ロジクール G SUPERSTRIKE の製品情報を検索（新しいタブ）">ロジクール G SUPERSTRIKE<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Mouse Pad</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Wraith%20Cosmic%20Glass%20V2" target="_blank" rel="noopener noreferrer" title="Wraith Cosmic Glass V2 の製品情報を検索（新しいタブ）">Wraith Cosmic Glass V2<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Hub</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=HM%20Lab%20ZNEO" target="_blank" rel="noopener noreferrer" title="HM Lab ZNEO の製品情報を検索（新しいタブ）">HM Lab ZNEO<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Deck</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Elgato%20Stream%20Deck%20%2B" target="_blank" rel="noopener noreferrer" title="Elgato Stream Deck + の製品情報を検索（新しいタブ）">Elgato Stream Deck +<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
 </ul>
 </div>
 <div class="card">
 <h2>Audio &amp; Display</h2>
 <ul class="spec-list">
-<li class="spec-item"><span class="spec-label">Monitor</span><span class="spec-value">LG UltraGear OLED 27GX700A-B</span></li>
-<li class="spec-item"><span class="spec-label">Arm</span><span class="spec-value">Ergotron LX Matte Black</span></li>
-<li class="spec-item"><span class="spec-label">Speaker</span><span class="spec-value">Bose Companion 2 Series III</span></li>
-<li class="spec-item"><span class="spec-label">Mic</span><span class="spec-value">Blue Yeti</span></li>
-<li class="spec-item"><span class="spec-label">Earbuds</span><span class="spec-value">Sony INZONE Buds (WF-G700N)</span></li>
+<li class="spec-item"><span class="spec-label">Monitor</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=LG%20UltraGear%20OLED%2027GX700A-B" target="_blank" rel="noopener noreferrer" title="LG UltraGear OLED 27GX700A-B の製品情報を検索（新しいタブ）">LG UltraGear OLED 27GX700A-B<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Arm</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Ergotron%20LX%20Matte%20Black" target="_blank" rel="noopener noreferrer" title="Ergotron LX Matte Black の製品情報を検索（新しいタブ）">Ergotron LX Matte Black<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Speaker</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Bose%20Companion%202%20Series%20III" target="_blank" rel="noopener noreferrer" title="Bose Companion 2 Series III の製品情報を検索（新しいタブ）">Bose Companion 2 Series III<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Mic</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Blue%20Yeti" target="_blank" rel="noopener noreferrer" title="Blue Yeti の製品情報を検索（新しいタブ）">Blue Yeti<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="spec-item"><span class="spec-label">Earbuds</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=Sony%20INZONE%20Buds%20(WF-G700N)" target="_blank" rel="noopener noreferrer" title="Sony INZONE Buds (WF-G700N) の製品情報を検索（新しいタブ）">Sony INZONE Buds (WF-G700N)<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
 </ul>
 </div>
+<div class="card">
+<h2>サブノートPC</h2>
+<ul class="spec-list"><li class="spec-item"><span class="spec-label">Model</span><span class="spec-value"><a class="device-link" href="https://www.google.com/search?q=GALLERIA%20XL7C-R46H" target="_blank" rel="noopener noreferrer">GALLERIA XL7C-R46H<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li></ul>
 </div>
+</div>
+</section>
 <section class="info-section" aria-labelledby="history-heading">
 <h2 class="section-title" id="history-heading">変更履歴</h2>
 <div class="card info-card">
 <ul class="history-list">
-<li class="history-item"><time class="history-date" datetime="2026-09-03">2026/9/3(木)</time><span class="history-category">イヤホン</span><span class="history-detail">EarFun Air Pro 4 → Sony INZONE Buds (WF-G700N)</span></li>
-<li class="history-item"><time class="history-date" datetime="2026-08-26">2026/8/26(水)</time><span class="history-category">CPUクーラー</span><span class="history-detail">NZXT KRAKEN X73 360mm → DeepCool SPARTACUS 360</span></li>
-<li class="history-item"><time class="history-date" datetime="2026-08-22">2026/8/22(土)</time><span class="history-category">PCケース</span><span class="history-detail">NZXT H710i Black &amp; RED → NZXT H9 Flow RGB+ (2025)</span></li>
-<li class="history-item"><time class="history-date" datetime="2026-05-14">2026/5/14(木)</time><span class="history-category">モニター</span><span class="history-detail">MSI Optix G273QPF 165Hz → LG UltraGear OLED 27GX700A-B</span></li>
-<li class="history-item"><time class="history-date" datetime="2026-03-27">2026/3/27(金)</time><span class="history-category">マウス</span><span class="history-detail">VAXEE NP-01S v2R Wireless → ロジクール G SUPERSTRIKE</span></li>
+<li class="history-item"><time class="history-date" datetime="2026-10-24">2026/10/24(土)</time><span class="history-category">サブノートPC</span><span class="history-detail"><a class="device-link" href="https://www.google.com/search?q=galleria%20xl7c-r46h" target="_blank" rel="noopener noreferrer" title="galleria xl7c-r46h の製品情報を検索（新しいタブ）">galleria xl7c-r46h<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="history-item"><time class="history-date" datetime="2026-09-03">2026/9/3(木)</time><span class="history-category">イヤホン</span><span class="history-detail"><a class="device-link" href="https://www.google.com/search?q=EarFun%20Air%20Pro%204" target="_blank" rel="noopener noreferrer" title="EarFun Air Pro 4 の製品情報を検索（新しいタブ）">EarFun Air Pro 4<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a> <span aria-label="から">→</span> <a class="device-link" href="https://www.google.com/search?q=Sony%20INZONE%20Buds%20(WF-G700N)" target="_blank" rel="noopener noreferrer" title="Sony INZONE Buds (WF-G700N) の製品情報を検索（新しいタブ）">Sony INZONE Buds (WF-G700N)<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="history-item"><time class="history-date" datetime="2026-08-26">2026/8/26(水)</time><span class="history-category">CPUクーラー</span><span class="history-detail"><a class="device-link" href="https://www.google.com/search?q=NZXT%20KRAKEN%20X73%20360mm" target="_blank" rel="noopener noreferrer" title="NZXT KRAKEN X73 360mm の製品情報を検索（新しいタブ）">NZXT KRAKEN X73 360mm<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a> <span aria-label="から">→</span> <a class="device-link" href="https://www.google.com/search?q=DeepCool%20SPARTACUS%20360" target="_blank" rel="noopener noreferrer" title="DeepCool SPARTACUS 360 の製品情報を検索（新しいタブ）">DeepCool SPARTACUS 360<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="history-item"><time class="history-date" datetime="2026-08-22">2026/8/22(土)</time><span class="history-category">PCケース</span><span class="history-detail"><a class="device-link" href="https://www.google.com/search?q=NZXT%20H710i%20Black%20%26%20RED" target="_blank" rel="noopener noreferrer" title="NZXT H710i Black &amp; RED の製品情報を検索（新しいタブ）">NZXT H710i Black &amp; RED<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a> <span aria-label="から">→</span> <a class="device-link" href="https://www.google.com/search?q=NZXT%20H9%20Flow%20RGB%2B%20(2025)" target="_blank" rel="noopener noreferrer" title="NZXT H9 Flow RGB+ (2025) の製品情報を検索（新しいタブ）">NZXT H9 Flow RGB+ (2025)<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+<li class="history-item"><time class="history-date" datetime="2026-05-14">2026/5/14(木)</time><span class="history-category">モニター</span><span class="history-detail"><a class="device-link" href="https://www.google.com/search?q=MSI%20Optix%20G273QPF%20165Hz" target="_blank" rel="noopener noreferrer" title="MSI Optix G273QPF 165Hz の製品情報を検索（新しいタブ）">MSI Optix G273QPF 165Hz<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a> <span aria-label="から">→</span> <a class="device-link" href="https://www.google.com/search?q=LG%20UltraGear%20OLED%2027GX700A-B" target="_blank" rel="noopener noreferrer" title="LG UltraGear OLED 27GX700A-B の製品情報を検索（新しいタブ）">LG UltraGear OLED 27GX700A-B<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
 </ul>
+<details class="history-more">
+<summary><span class="when-closed">過去の履歴を表示（1件） ＋</span><span class="when-open">過去の履歴を閉じる −</span></summary>
+<ul class="history-list">
+<li class="history-item"><time class="history-date" datetime="2026-03-27">2026/3/27(金)</time><span class="history-category">マウス</span><span class="history-detail"><a class="device-link" href="https://www.google.com/search?q=VAXEE%20NP-01S%20v2R%20Wireless" target="_blank" rel="noopener noreferrer" title="VAXEE NP-01S v2R Wireless の製品情報を検索（新しいタブ）">VAXEE NP-01S v2R Wireless<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a> <span aria-label="から">→</span> <a class="device-link" href="https://www.google.com/search?q=%E3%83%AD%E3%82%B8%E3%82%AF%E3%83%BC%E3%83%AB%20G%20SUPERSTRIKE" target="_blank" rel="noopener noreferrer" title="ロジクール G SUPERSTRIKE の製品情報を検索（新しいタブ）">ロジクール G SUPERSTRIKE<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
+</ul>
+</details>
 </div>
 </section>
 <section class="info-section" aria-labelledby="planned-heading">
 <h2 class="section-title" id="planned-heading">変更予定</h2>
 <div class="card info-card">
 <ul class="history-list">
-<li class="history-item planned-item"><span class="history-category">マウスパッド</span><span class="history-detail">Wraith Cosmic Glass V2 → eLuminArc 神樹 (Shinju)</span></li>
+<li class="history-item planned-item"><span class="history-category">マウスパッド</span><span class="history-detail"><a class="device-link" href="https://www.google.com/search?q=Wraith%20Cosmic%20Glass%20V2" target="_blank" rel="noopener noreferrer" title="Wraith Cosmic Glass V2 の製品情報を検索（新しいタブ）">Wraith Cosmic Glass V2<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a> <span aria-label="から">→</span> <a class="device-link" href="https://www.google.com/search?q=eLuminArc%20%E7%A5%9E%E6%A8%B9%20(Shinju)" target="_blank" rel="noopener noreferrer" title="eLuminArc 神樹 (Shinju) の製品情報を検索（新しいタブ）">eLuminArc 神樹 (Shinju)<span class="external-icon" aria-hidden="true"> ↗</span><span class="sr-only">（製品情報を検索・新しいタブ）</span></a></span></li>
 </ul>
 </div>
 </section>
@@ -284,8 +369,8 @@ footer {
 <h2 id="gallery-heading">Gallery</h2>
 <div class="media-gallery">
 <div class="media-item">
-<a href="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" target="_blank" rel="noopener noreferrer">
-<img src="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" alt="Main Desk Setup" />
+<a class="photo-enlarge" href="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" aria-label="デスク写真を拡大表示" aria-haspopup="dialog">
+<img src="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" alt="gakukitiのデスクに配置されたキーボードと周辺機器" loading="lazy" />
 <div class="media-caption">Main Desk Setup</div>
 </a>
 </div>
@@ -301,5 +386,34 @@ footer {
 </main>
 <footer>© 2026 Gaming Setup Database</footer>
 </div>
+<dialog class="photo-dialog" id="photo-dialog" aria-label="デスク写真の拡大表示">
+<button class="photo-close" type="button" autofocus>閉じる ×</button>
+<figure><img src="https://raw.githubusercontent.com/gakukiti/gaku-pc-device/main/img/desk001.webp" alt="gakukitiのデスクに配置されたキーボードと周辺機器の拡大写真" /><figcaption>Main Desk Setup</figcaption></figure>
+</dialog>
+<script>
+(() => {
+  const dialog = document.getElementById('photo-dialog');
+  const trigger = document.querySelector('.photo-enlarge');
+  if (!dialog || !trigger || typeof dialog.showModal !== 'function') return;
+  trigger.addEventListener('click', event => {
+    event.preventDefault();
+    dialog.showModal();
+    document.body.classList.add('photo-open');
+  });
+  dialog.querySelector('.photo-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target !== dialog) return;
+    const rect = dialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+  });
+  dialog.addEventListener('close', () => {
+    document.body.classList.remove('photo-open');
+    trigger.focus({ preventScroll: true });
+  });
+})();
+</script>
 </body>
 </html>
+
+
+
